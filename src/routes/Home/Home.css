@@ -5,6 +5,18 @@
     align-items: center;
 }
 
+.main h2 {
+    color: #ff8800;
+    text-transform: uppercase;
+}
+
+.main h4 {
+    color: #ff8800;
+    text-transform: uppercase;
+}
+
+
+
 #diet {
     margin: 1rem;
     padding: 0.7rem;
@@ -18,7 +30,21 @@
 }
 
 .recipes {
-    width: 18rem;
-    margin: 1rem;
+    width: 15rem;
+    margin-bottom: 0.5rem;
     overflow: hidden;
+    border-radius: 1rem;
+    border:0.2rem solid #ff8800;
+}
+
+.main a{
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    background-color: #ff8800;
+    color: #fff;
 }

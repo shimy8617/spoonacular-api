@@ -15,8 +15,7 @@ export const Navigation = () => {
           Spoonacular <span>API</span>
         </h1>
       </div>
-      ;
-      <Outlet />;
+      <Outlet />
     </Fragment>
   );
 };

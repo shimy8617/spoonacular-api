@@ -1,50 +1,28 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
-import { getRecipes } from "../../services/getData.js";
+import { apiKey } from "../../apiKey/apiKey.js";
 
 import "./Home.css";
+
+const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+
+const secondApi = 'apiKey=ef04f9ae17f34d709f92d66448e331ea';
 
 export const Home = () => {
   const [selected, setSelected] = useState("");
 
-  const container = document.querySelector("#recipes");
-  const loader = document.getElementById("recipeInfo");
+  const getRecipes = async (number=10, value= setSelected) => {
+    const res = await fetch(`${baseUrl}?${secondApi}&diet=${value}&maxFat=25&number=${number}&addRecipeInformation=true`);
+    const data = await res.json();
+    return data;
+  }
+  getRecipes();
 
   const handleChange = (event) => {
     console.log(event.target.value);
     setSelected(event.target.value);
   };
-
-  const recipesList = async (number = 10, value = setSelected) => {
-    loader.style.display = "grid";
-    const { results } = await getRecipes(number, value);
-    console.log(results);
-    loader.style.display = "none";
-    results.forEach((recipes) => {
-      const article = document.createElement("article");
-      article.setAttribute("class", "recipes");
-      article.innerHTML = `
-      <img src='${recipes.image}' alt=''>
-      <h2>${recipes.title}</h2>
-      <div>
-        <p>${recipes.pricePerServing}</p>
-        <p>${recipes.id}</p>
-      </div>
-      <a href="/#/${recipes.id}">Ver detalle
-                </a>
-    `;
-      container.appendChild(article);
-    });
-  };
-
-  recipesList();
-
-  /* window.addEventListener("hashchange", () => {
-    const id = location.hash.slice(1).toLocaleLowerCase().split("/")[1] || "/";
-    localStorage.setItem("charID", id);
-    window.location.replace("/character.html");
-  }); */
 
   return (
     <>
@@ -58,9 +36,24 @@ export const Home = () => {
           <option value="dairyFree">Dairy Free</option>
           <option value="gluten-free">Gluten Free</option>
         </select>
-        <div id="recipes">
-          <div id="recipeInfo"></div>
+
+        <div id="recipes" className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="col">
+          <div className="card h-100">
+           {getRecipes.forEach(results => 
+            console.log(results)/* 
+            const {image, title, pricePerServing} = results;
+            <div>
+            <img src={image} alt='' />
+            <h4>{title}</h4>
+            <p>{pricePerServing}</p>
+            </div> */
+          )}
+          </div> 
         </div>
+      </div>
+
+
       </div>
     </>
   );
