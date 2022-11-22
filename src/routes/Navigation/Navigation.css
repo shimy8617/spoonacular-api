@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+    background-color: #ff8800;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    color: #ffffff;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header img {
+    width: 6rem;
+}
